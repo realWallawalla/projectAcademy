@@ -1,4 +1,4 @@
-package repositories;
+package main.repositories;
 
 public class BlogRepositoryException extends RuntimeException {
 
