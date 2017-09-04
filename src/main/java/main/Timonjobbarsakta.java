@@ -5,4 +5,6 @@ package main;
  */
 public class Timonjobbarsakta {
     // david ddsadasdadsaad
+    int david = 25;
+    String david2 = "david";
 }
