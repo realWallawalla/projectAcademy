@@ -26,11 +26,11 @@ public class BarController {
         @Autowired
         SqlGetBarRepository sqlGetBarRepository;
 
-        @GetMapping("/GET")
-        @ResponseBody
-        public List<Bar> getInView() {
-            return sqlGetBarRepository.listBar();
-        }
+//        @GetMapping("/GET")
+//        @ResponseBody
+//        public List<Bar> getInView() {
+//            return sqlGetBarRepository.listBar();
+//        }
 
 }
 
