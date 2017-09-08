@@ -1,4 +1,5 @@
 var coords = {};
+var test = [];
 
 function getLocation(){
     if(navigator.geolocation){
@@ -41,7 +42,14 @@ var service = new google.maps.places.PlacesService(container);
       function callback(results, status) {
 
           if (status == google.maps.places.PlacesServiceStatus.OK) {
-
+              $.ajax({
+                  url: "/GET",
+                  type: 'GET',
+                  success: function (response) {
+                      test = response;
+                      console.log(response);
+                  }
+              });
               for(var i = 0; i < results.length; i++){
                       $('.barResultContainer').append('<div class="barResult" id=barResult' + i + '></div>');
                       $('#barResult' + i).append('<div class="barResultTitle" id=barResultTitle' + i + '></div>');

@@ -17,7 +17,7 @@ public class DemoApplication {
 
 	/*@GetMapping("/search")
 	public ModelAndView search(){
-		return new ModelAndView("Search");
+		return new ModelAndView("main.Search");
 	}*/
 
 
