@@ -28,6 +28,8 @@
   <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <title>Beer Bro - Find cheap beer near you!</title>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw&libraries=places">
+  </script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
@@ -37,8 +39,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/one-page-wonder.css" rel="stylesheet">
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw&libraries=places">
-  </script>
+  <link rel="stylesheet" href="css/index.css">
 
 </head>
 
@@ -65,7 +66,7 @@
   <div class="container">
     <div id="custom-search-input">
       <div class="input-group col-md-12">
-        <input type="text" class="form-control input-lg" placeholder="main.Search for an adress or zip code (e.g. Sveavägen 10 or 12345)" />
+        <input type="text" class="form-control input-lg" id="locationTextField" placeholder="main.Search for an adress or zip code (e.g. Sveavägen 10 or 12345)" />
         <span class="input-group-btn">
           <button class="btn btn-info btn-lg" type="button">
             <i class="glyphicon glyphicon-search"></i>
@@ -79,7 +80,7 @@
   <!-- Sökresultat + infotext -->
   <div class="container">
     <hgroup class="mb20">
-      <h1 class="searchresulttext">main.Search Results</h1>
+      <h1 class="searchresulttext">Search Results</h1>
       <h2 class="searchresulttext"><strong class="text-danger">3</strong> results were found for the search for <strong class="text-danger">Kista Galleria</strong></h2>
     </hgroup>
 
@@ -151,6 +152,10 @@
   <!-- Tom container #1 -->
   <section>
     <div class="barResultContainer" id="barResultContainer">
+      <div class="col-md-5">
+        <h3></h3>
+
+      </div>
     </div>
 
   </section>
