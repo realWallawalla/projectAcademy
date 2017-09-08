@@ -78,27 +78,10 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#rating' + i).append(results[i].rating);
                 $("#searchImageUrl" + i).attr("src", imageUrl);
 
-                // $('img').append(results[i].photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100}));
-
 
 
             }
 
-            // TEST KOD TA BORT
-            // for (var i = 0; i < 2; i++) {
-            //     console.log(results[i]);
-            //     $('.barResultContainer').append('<div class="barResult" id=barResult' + i + '></div>');
-            //     $('#barResult' + i).append('<div class="barResultTitle" id=barResultTitle' + i + '></div>');
-            //     $('#barResult' + i).append('<div class="rating" id=rating' + i + '></div>');
-            //     $('#barResultTitle' + i).append(results[i].name);
-            //     // $('#rating' + i).append(results[i].rating);
-            //     $('#rating' + i).append(results[1].photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35}));
-            //
-            //     results[i].photos[0].getUrl({'maxWidth': 35, 'maxHeight': 35});
-            //
-            //     var photoString = "https://maps.googleapis.com/maps/api/place" +
-            //         "/photo?maxwidth=400&photoreference=" + results[i].reference + "&key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw"
-            // }
         }
 
     }
