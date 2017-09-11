@@ -73,18 +73,43 @@ document.getElementById("geoButton").onclick = function fun() {
 
 
 
-                $('.barResultContainer').append('<div class="barResult" id=barResult' + i + '></div>');
-                $('#barResult' + i).append('<div class="barResultTitle" id=barResultTitle' + i + '></div>');
-                $('#barResult' + i).append('<div class="rating" id=rating' + i + '></div>');
-                $('#barResult' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
-                $('#barResult' + i).append('<img src="" class="searchImageUrl" id=searchImageUrl' + i + '></img>');
-                $('#barResult' + i).append('<div class="address" id=address' + i + '></div>');
+                $('.barResultContainer').append('<article class="barResult" id=barResult' + i + '></article>');
+                $('#barResult' + i).append('<section class="col-xs-12 col-sm-6 col-md-12" id=sectionResult' + i +'>');
+                $('#sectionResult' + i).append('<div class="row" id=rowId' + i + '></div>');
+                $('#rowId' + i).append('<div class="col-md-7" id=pictCol' + i + '></div>');
+                $('#pictCol' + i).append('<a class="alink" id=alink' + i + '></a>');
+                $('#alink' + i).append('<img src="" class="searchImageUrl" id=searchImageUrl' + i + '></img>');
 
+                $('#rowId' + i).append('<div class="col-md-5" id=textCol' + i + '></div>');
+                $('#textCol' + i).append('<h3 class="barResultTitle" id=barResultTitle' + i + '></h3>');
+                $('#textCol' + i).append('<p class="description" id=description' + i + '></p>');
+                $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
+                $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
+                $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
+                $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
+                $('#markerBeer' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
+                $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
+                $('#openMarker' + i).append('<i class="glyphicon glyphicon-time"></i>');
+                $('#openMarker' + i).append('<span class="openHours" id=openHours' + i + '></span>');
+                $('#textCol' + i).append('<p class="wifi" id=wifi' + i + '></p>');
+                $('#wifi' + i).append('<i class="glyphicon glyphicon-signal"></i>');
+                $('#wifi' + i).append('<span class="wifiAvailable" id=wifiAvailable' + i + '></span>');
+
+
+                $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
+                $('#textCol' + i).append('<div class="rating" id=rating' + i + '></div>');
+                $('#textCol' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
+                $('#textCol' + i).append('<div class="address" id=address' + i + '></div>');
 
                 $('#barResultTitle' + i).append(results[i].name);
                 $('#rating' + i).append(results[i].rating);
                 $("#searchImageUrl" + i).attr("src", imageUrl);
                 $('#address' + i).append(results[i].vicinity);
+                $('#description' + i).append("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.");
+                $('#beerPrice' + i).append("Beer from: 35");
+                $('#openHours' + i).append(" Open: 17-19");
+                $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
 
 
 
