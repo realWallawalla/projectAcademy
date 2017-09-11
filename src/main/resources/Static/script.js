@@ -57,6 +57,7 @@ document.getElementById("geoButton").onclick = function fun() {
             $.ajax({
                 url: "/GET",
                 type: 'GET',
+                async: false,
                 success: function (response) {
                     console.log(response);
                 }
@@ -64,17 +65,27 @@ document.getElementById("geoButton").onclick = function fun() {
 
 
             for (var i = 0; i < results.length; i++) {
-                var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 10000, 'maxHeight': 10000});
+
+                if (results[i].photos.length > 0)
+                    var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 1000, 'maxHeight': 1000});
                 var placeId = "" + results[i].place_id;
                 var placeIdUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw";
 
 
-                // console.log(placeIdUrl);
+                //console.log(placeIdUrl);
 
+                $.ajax({
+                    url: placeIdUrl,
+                    type: 'GET',
+                    async: false,
+                    success: function (response) {
+                        console.log(response)
+                    }
+                });
 
 
                 $('.barResultContainer').append('<article class="barResult" id=barResult' + i + '></article>');
-                $('#barResult' + i).append('<section class="col-xs-12 col-sm-6 col-md-12" id=sectionResult' + i +'>');
+                $('#barResult' + i).append('<section class="col-xs-12 col-sm-6 col-md-12" id=sectionResult' + i + '>');
                 $('#sectionResult' + i).append('<div class="row" id=rowId' + i + '></div>');
                 $('#rowId' + i).append('<div class="col-md-7" id=pictCol' + i + '></div>');
                 $('#pictCol' + i).append('<a class="alink" id=alink' + i + '></a>');
@@ -86,15 +97,20 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
                 $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
                 $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
+
                 $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
                 $('#markerBeer' + i).append('<i class="glyphicon glyphicon-usd"></i>');
                 $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
+
                 $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
                 $('#openMarker' + i).append('<i class="glyphicon glyphicon-time"></i>');
                 $('#openMarker' + i).append('<span class="openHours" id=openHours' + i + '></span>');
+
                 $('#textCol' + i).append('<p class="wifi" id=wifi' + i + '></p>');
                 $('#wifi' + i).append('<i class="glyphicon glyphicon-signal"></i>');
                 $('#wifi' + i).append('<span class="wifiAvailable" id=wifiAvailable' + i + '></span>');
+
+                $('#textCol' + i).append('<button class="btn btn-primary" data-toggle="collapse" data-target="#demo2" id=wiewInfoBtn' + i + '></button>');
 
 
                 $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
@@ -110,7 +126,6 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#beerPrice' + i).append("Beer from: 35");
                 $('#openHours' + i).append(" Open: 17-19");
                 $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
-
 
 
             }
