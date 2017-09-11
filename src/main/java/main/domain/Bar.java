@@ -1,15 +1,17 @@
-package domain;
+package main.domain;
+
+import java.io.Serializable;
 
 /**
  * Created by Administrator on 2017-09-06.
  */
 public class Bar {
-    private final int id;
-    private final String adress;
-    private final String postnr;
-    private final int priceBeer;
-    private final int priceCider;
-    private final int priceWine;
+    public int id;
+    public String adress;
+    public String postnr;
+    public int priceBeer;
+    public int priceCider;
+    public int priceWine;
 
     public Bar(int id, String adress, String postnr, int priceBeer, int priceCider, int priceWine) {
         this.id = id;
