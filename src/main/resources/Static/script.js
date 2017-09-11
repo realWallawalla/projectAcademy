@@ -65,17 +65,26 @@ document.getElementById("geoButton").onclick = function fun() {
 
             for (var i = 0; i < results.length; i++) {
                 var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 10000, 'maxHeight': 10000});
-                console.log(results[i]);
+                var placeId = "" + results[i].place_id;
+                var placeIdUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw";
+
+
+                // console.log(placeIdUrl);
+
+
+
                 $('.barResultContainer').append('<div class="barResult" id=barResult' + i + '></div>');
                 $('#barResult' + i).append('<div class="barResultTitle" id=barResultTitle' + i + '></div>');
                 $('#barResult' + i).append('<div class="rating" id=rating' + i + '></div>');
                 $('#barResult' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
                 $('#barResult' + i).append('<img src="" class="searchImageUrl" id=searchImageUrl' + i + '></img>');
+                $('#barResult' + i).append('<div class="address" id=address' + i + '></div>');
+
 
                 $('#barResultTitle' + i).append(results[i].name);
                 $('#rating' + i).append(results[i].rating);
                 $("#searchImageUrl" + i).attr("src", imageUrl);
-
+                $('#address' + i).append(results[i].vicinity);
 
 
 
