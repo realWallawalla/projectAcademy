@@ -35,9 +35,9 @@ google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
 
 
 //debugger timout
-setTimeout(function () {
-    console.log(coords.lat);
-}, 3000);
+// setTimeout(function () {
+//     console.log(coords.lat);
+// }, 3000);
 
 var container = document.getElementById('blubb');
 var service = new google.maps.places.PlacesService(container);
@@ -65,7 +65,7 @@ document.getElementById("geoButton").onclick = function fun() {
 
 
             for (var i = 0; i < results.length; i++) {
-                var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+                var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 10000, 'maxHeight': 10000});
 
                 $('.barResultContainer').append('<div class="barResult" id=barResult' + i + '></div>');
                 $('#barResult' + i).append('<div class="barResultTitle" id=barResultTitle' + i + '></div>');
@@ -73,10 +73,12 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#barResult' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
                 $('#barResult' + i).append('<img src="" class="searchImageUrl" id=searchImageUrl' + i + '></img>');
 
-                $('#barResultTitle' + i).append(results[i].name);
+                $('#barResult' + i).append('<div class="col-md-5" id=searchResult' + i + '></div>');
 
+                $('#barResultTitle' + i).append(results[i].name);
                 $('#rating' + i).append(results[i].rating);
                 $("#searchImageUrl" + i).attr("src", imageUrl);
+
 
 
 
