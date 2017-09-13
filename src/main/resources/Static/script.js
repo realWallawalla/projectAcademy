@@ -55,17 +55,21 @@ document.getElementById("geoButton").onclick = function fun() {
     function callback(results, status) {
 
         if (status == google.maps.places.PlacesServiceStatus.OK) {
+            var localBarDatabase;
+
             $.ajax({
                 url: "/GET",
                 type: 'GET',
                 async: false,
                 success: function (response) {
                     console.log(response);
+                    localBarDatabase = response;
+                    console.log("localBarDatabase");
+                    console.log(localBarDatabase);
                 }
             });
 
-
-            for (var i = 0; i < 2; i++) { //results.length
+            for (var i = 0; i < 3; i++) { //results.length
 
                 var d = new Date();
                 var openingHours = [];
@@ -105,7 +109,7 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#sectionResult' + i).append('<div class="row" id=rowId' + i + '></div>');
                 $('#rowId' + i).append('<div class="col-md-7" id=pictCol' + i + '></div>');
                 $('#pictCol' + i).append('<a class="alink" id=alink' + i + '></a>');
-                $('#alink' + i).append('<img src="" class="img-fluid rounded mb-3 mb-md-0" id=searchImageUrl' + i + '></img>');
+                $('#alink' + i).append('<img src="" class="img-fluid mb-3 mb-md-0" id=searchImageUrl' + i + '></img>');
 
                 $('#rowId' + i).append('<div class="col-md-5" id=textCol' + i + '></div>');
                 $('#textCol' + i).append('<h3 class="barResultTitle" id=barResultTitle' + i + '></h3>');
@@ -160,6 +164,11 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#wiewInfoWine1' + i).append(" Wine: 780");
                 $('#wiewInfoWine2' + i).append(" Cider: lul");
 
+                for(var j = 0; j <localBarDatabase.length; j++) {
+                    if (localBarDatabase[j].adress == results[i].vicinity) {
+                        $('#beerPrice' + i).append(localBarDatabase[j].priceBeer);
+                    }
+                }
 
             }
         }
