@@ -39,27 +39,33 @@
 
   <!-- Custom styles for this template -->
   <link href="css/one-page-wonder.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css">
 
 </head>
 
+<!--&lt;!&ndash; Header + logo &ndash;&gt;-->
+<!--<body>-->
+  <!--<header class="masthead">-->
+    <!--<div class="overlay">-->
+      <!--<div class="topcontainer">-->
+        <!--<img id="logo" src="BeerBro-HighRes-Transparent.jpg">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</header>-->
+
 <!-- Header + logo -->
 <body>
-  <header class="masthead">
-    <div class="overlay">
-      <div class="topcontainer">
-        <img id="logo" src="BeerBro-HighRes-Transparent.jpg">
-      </div>
+<header class="masthead">
+  <div class="overlay">
+    <div class="topcontainer">
+      <img id="logo" src="beerfinderlogo.png">
     </div>
-  </header>
+  </div>
+</header>
 
   <div class="jumbotron">
     <h1>Welcome to Beer Bro!</h1>
-    <p>Click the "Get my location" button to list bars close to you, or make a custom search in the input field</p>
-    <p id="geoButton"><a class="btn btn-primary btn-lg2" href="#" role="button"><i class="glyphicon glyphicon-map-marker"></i> Get current location</a></p>
-
-
-
+    <p>Click the "Search from current location" button to list the bars closest to you, or make a custom search in the input field</p>
+    <p id="geoButton"><a class="btn btn-primary btn-lg2" href="#" role="button"><i class="glyphicon glyphicon-map-marker"></i> Search from current location</a></p>
   </div>
 
   <!-- Sökruta + submit-->
@@ -85,64 +91,35 @@
     </hgroup>
 
     <!-- Sökbild #1 -->
-    <article class="search-result row">
-      <section class="col-xs-12 col-sm-6 col-md-12">
-        <div class="row">
-          <div class="col-md-7">
-            <a href="#">
-              <img class="img-fluid rounded mb-3 mb-md-0" src="bar2.jpg" alt="">
-            </a>
-          </div>
+    <!--<article class="search-result row">-->
+      <!--<section class="col-xs-12 col-sm-6 col-md-12">-->
+        <!--<div class="row">-->
+          <!--<div class="col-md-7">-->
+            <!--<a href="#">-->
+              <!--<img class="img-fluid rounded mb-3 mb-md-0" src="bar2.jpg" alt="">-->
+            <!--</a>-->
+          <!--</div>-->
 
-          <!-- Sökresultat #1  -->
-          <div class="col-md-5">
-            <h3>Tores Taverna</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. </p>
-            <p class="barspecs"><i class="glyphicon glyphicon-map-marker"></i> <span>Borgarfjordsgatan 4</span></p>
-            <p class="barspecs"><i class="glyphicon glyphicon-time"></i> <span>Open: 17:00-23:00</span></p>
-            <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Beer from: 35 SEK</span></p>
-            <p class="barspecs"><i class="glyphicon glyphicon-signal"></i> <span>Free Wi-Fi: Available</span></p>
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#demo1">View more info</button>
-            <button class="btn btn-primary" data-target="#demo">Add to favourites</button>
-            <div id="demo1" class="collapse">
-              <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.</p>
-              <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Wine from: 49 SEK</span></p>
-              <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Cider from: 39 SEK</span></p>
-            </div>
-          </div>
-        </div>
-      </article>
+          <!--&lt;!&ndash; Sökresultat #1  &ndash;&gt;-->
+          <!--<div class="col-md-5">-->
+            <!--<h3>Tores Taverna</h3>-->
+            <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. </p>-->
+            <!--<p class="barspecs"><i class="glyphicon glyphicon-map-marker"></i> <span>Borgarfjordsgatan 4</span></p>-->
+            <!--<p class="barspecs"><i class="glyphicon glyphicon-time"></i> <span>Open: 17:00-23:00</span></p>-->
+            <!--<p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Beer from: 35 SEK</span></p>-->
+            <!--<p class="barspecs"><i class="glyphicon glyphicon-signal"></i> <span>Free Wi-Fi: Available</span></p>-->
+            <!--<button class="btn btn-primary" data-toggle="collapse" data-target="#demo1">View more info</button>-->
+            <!--<button class="btn btn-primary" data-target="#demo">Add to favourites</button>-->
+            <!--<div id="demo1" class="collapse">-->
+              <!--<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.</p>-->
+              <!--<p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Wine from: 49 SEK</span></p>-->
+              <!--<p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Cider from: 39 SEK</span></p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</article>-->
       <!-- /.row -->
 
-      <!-- Sökbild #2 -->
-      <article class="search-result row">
-        <section class="col-xs-12 col-sm-6 col-md-12">
-          <div class="row">
-            <div class="col-md-7">
-              <a href="#">
-                <img class="img-fluid rounded mb-3 mb-md-0" src="bar2.jpg" alt="">
-              </a>
-            </div>
-
-            <!-- Sökresultat #2 -->
-            <div class="col-md-5">
-              <h3>The Flying Dogpudel</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. </p>
-              <p class="barspecs"><i class="glyphicon glyphicon-map-marker"></i> <span>Borgarfjordsgatan 4</span></p>
-              <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Beer from: 35 SEK</span></p>
-              <p class="barspecs"><i class="glyphicon glyphicon-time"></i> <span>Open: 17:00-23:00</span></p>
-              <p class="barspecs"><i class="glyphicon glyphicon-signal"></i> <span>Free Wi-Fi: Available</span></p>
-              <button class="btn btn-primary" data-toggle="collapse" data-target="#demo2">View more info</button>
-              <button class="btn btn-primary" data-target="#demo">Add to favourites</button>
-              <div id="demo2" class="collapse">
-                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.</p>
-                <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Wine from: 49 SEK</span></p>
-                <p class="barspecs"><i class="glyphicon glyphicon-usd"></i> <span>Cider from: 39 SEK</span></p>
-              </div>
-            </div>
-          </div>
-        </article>
-        <!-- /.row -->
 
 
   </div>
@@ -152,8 +129,6 @@
   <!-- Tom container #1 -->
   <section>
     <div class="barResultContainer" id="barResultContainer">
-      <div class="col-md-5">
-        <h3></h3>
 
       </div>
     </div>

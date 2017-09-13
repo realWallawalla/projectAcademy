@@ -1,31 +1,47 @@
-/*!
- * Start Bootstrap - One Page Wonder (http://startbootstrap.com/template-overviews/one-page-wonder)
- * Copyright 2013-2017 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-one-page-wonder/blob/master/LICENSE)
- */
 
- .barResultTitle {
-   font-size: 14px;
- }
+.barResultTitle {
+    font-size: 14px;
+}
 
- .jumbotron {
-   padding-bottom: 0px;
- }
+.jumbotron {
+    padding-bottom: 0px;
+    background-color: #e3e3e3;
+}
 
- .barResultContainer {
-   font-size: 20px;
- }
+#barResultContainer {
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 50px;
+    padding-left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+    text-align: left;
+    font-size: 16px;
 
- #barResultContainer {
+}
+img.searchImageUrl {
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+}
 
- }
+.img-fluid {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}
 
- .btn-lg2 {
-   padding: 0.5rem 1rem;
-   font-size: 25px;
-   line-height: 1.5;
-   border-radius: 10px;
- }
+.rounded {
+     border-radius: 0rem;
+}
+
+.btn-lg2 {
+    padding: 0.5rem 1rem;
+    font-size: 25px;
+    line-height: 1.5;
+    border-radius: 10px;
+}
 
 body {
     padding-top: 0px;
@@ -39,14 +55,14 @@ body {
 }*/
 
 #logo {
-  width: 30%;
-  height: 30%;
-  padding-top: 2px;
-  padding-bottom: 2px;
+    width: 20%;
+    height: 20%;
+    padding-top: 30px;
+    padding-bottom: 0px;
 }
 
 header.masthead {
-  background-color: #14191f;
+    background-color: #14191f;
     /*background: url("file://C:/Users/Administrator/Downloads/shutterstock_661350928.jpg") no-repeat bottom center scroll;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -55,9 +71,24 @@ header.masthead {
 
 }
 
+.barspecs {
+    font-size: 16px;
+}
+
+
+.searchresults {
+    font-size: 25px;
+    padding-bottom: 16px;
+}
+
+.bartitle {
+    font: 500 normal 1.375em "Verdana", Arial, Verdana, sans-serif;
+    font-size: 18px;
+}
+
 header.masthead > .overlay {
     text-align: center;
-    background-color: #131112;
+    background-color: #e3e3e3;
 }
 
 @media (min-width: 992px) {
