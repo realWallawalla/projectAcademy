@@ -119,11 +119,19 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#textCol' + i).append('<p class="description" id=description' + i + '></p>');
                 $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
                 $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
-                $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
+                $('#marker' + i).append('<a class="address" href="" id=address' + i + '></a>');
 
                 $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
                 $('#markerBeer' + i).append('<i class="glyphicon glyphicon-usd"></i>');
                 $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
+
+                $('#textCol' + i).append('<p class="markerCider" id=markerCider' + i + '></p>');
+                $('#markerCider' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                $('#markerCider' + i).append('<span class="ciderPrice" id=ciderPrice' + i + '></span>');
+
+                $('#textCol' + i).append('<p class="markerWine" id=markerWine' + i + '></p>');
+                $('#markerWine' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                $('#markerWine' + i).append('<span class="priceWine" id=priceWine' + i + '></span>');
 
                 $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
                 $('#openMarker' + i).append('<i class="glyphicon glyphicon-time"></i>');
@@ -145,7 +153,7 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#viewInfoWine' + i).append('<span id=wiewInfoWine2' + i + '></span>');
                 $('#viewInfo' + i).append('<p class="collapse" id=wiewInfoCider' + i + '></p>');
 
-                $('#textCol' + i).append('<button class="btn btn-primary" data-target="#demo" id=favBtn' + i + '>Add to favourites</button>');
+                // $('#textCol' + i).append('<button class="btn btn-primary" data-target="#demo" id=favBtn' + i + '>Add to favourites</button>');
 
 
                 $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
@@ -153,23 +161,26 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#textCol' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
                 $('#textCol' + i).append('<div class="address" id=address' + i + '></div>');
 
+
                 $('#barResultTitle' + i).append(results[i].name);
-                // $('#rating' + i).append(results[i].rating);
                 $("#searchImageUrl" + i).attr("src", imageUrl);
                 $('#address' + i).append(results[i].vicinity);
+                $("#address" + i).attr("href", "https://www.google.se/maps/place/" + results[i].vicinity);
+
 
                 // $('#description' + i).append("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.");
-                //$('#beerPrice' + i).append("Beer from: 35");
                 $('#openHours' + i).append(" " + openingHours[((d.getDay() + 6)%7)]);
                 $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
-                $('#ratingStar' + i).append("Rating: " + results[i].rating);
-                $('#wiewInfoText' + i).append(" erkgnerklögneörklgnklerngjklerngjkerngjkerngjkern");
-                $('#wiewInfoWine1' + i).append(" Wine: 780");
-                $('#wiewInfoWine2' + i).append(" Cider: lul");
+                $('#ratingStar' + i).append(" Rating: " + results[i].rating);
+                $('#wiewInfoText' + i).append("some intresting text lul");
+                // $('#wiewInfoWine1' + i).append(" Wine: 780");
+                // $('#wiewInfoWine2' + i).append(" Cider: lul");
 
                 for(var j = 0; j <localBarDatabase.length; j++) {
                     if (localBarDatabase[j].adress == results[i].vicinity) {
-                        $('#beerPrice' + i).append(localBarDatabase[j].priceBeer);
+                        $('#beerPrice' + i).append(" Beer from: " + localBarDatabase[j].priceBeer + " SEK");
+                        $('#priceWine' + i).append(" Wine from: " + localBarDatabase[j].priceWine + " SEK");
+                        $('#ciderPrice' + i).append(" Cider from: " + localBarDatabase[j].priceCider + " SEK");
                     }
                 }
 
