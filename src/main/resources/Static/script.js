@@ -72,16 +72,17 @@ document.getElementById("geoButton").onclick = function fun() {
 
             $("#barResultContainer").html('');
 
-            for (var i = 0; i < 3; i++) { //results.length
+            for (var i = 0; i < results.length; i++) {
 
                 var d = new Date();
                 var openingHours = [];
-                if(results[i].photos.length > 0) {
+
+                if(typeof results[i].photos !== 'undefined' && typeof results[i] !== 'undefined') {
                    var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 750, 'maxHeight': 750});
                 } else {
                    var imageUrl = "beerPic.jpg"
                 }
-                console.log(imageUrl);
+
                 var placeId = "" + results[i].place_id;
                 var placeIdUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw";
 
@@ -126,11 +127,11 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
 
                 $('#textCol' + i).append('<p class="markerCider" id=markerCider' + i + '></p>');
-                $('#markerCider' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                $('#markerCider' + i).append('<i class="glyphicon glyphicon-apple"></i>');
                 $('#markerCider' + i).append('<span class="ciderPrice" id=ciderPrice' + i + '></span>');
 
                 $('#textCol' + i).append('<p class="markerWine" id=markerWine' + i + '></p>');
-                $('#markerWine' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                $('#markerWine' + i).append('<i class="glyphicon glyphicon-home"></i>');
                 $('#markerWine' + i).append('<span class="priceWine" id=priceWine' + i + '></span>');
 
                 $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
