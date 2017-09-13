@@ -69,6 +69,9 @@ document.getElementById("geoButton").onclick = function fun() {
                 }
             });
 
+
+            $("#barResultContainer").html('');
+
             for (var i = 0; i < 3; i++) { //results.length
 
                 var d = new Date();
@@ -156,7 +159,7 @@ document.getElementById("geoButton").onclick = function fun() {
                 $('#address' + i).append(results[i].vicinity);
 
                 // $('#description' + i).append("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.");
-                $('#beerPrice' + i).append("Beer from: 35");
+                //$('#beerPrice' + i).append("Beer from: 35");
                 $('#openHours' + i).append(" " + openingHours[((d.getDay() + 6)%7)]);
                 $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
                 $('#ratingStar' + i).append("Rating: " + results[i].rating);
