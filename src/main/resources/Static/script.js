@@ -4,6 +4,8 @@ var tempRequest;
 var autoSearch = false;
 var match = false;
 var beerPrice, winePrice, ciderPrice;
+var localBarDatabase;
+var countName;
 // $("#searchButton").click(function location(){
 //     var userSearch = $("#locationTextField").val().longitude;
 //     var userSearch2 = $("#locationTextField").val().altitude;
@@ -77,7 +79,7 @@ function initializeAutocomplete() {
     var address = (document.getElementById('locationTextField'));
     var autocomplete = new google.maps.places.Autocomplete(address);
     autocomplete.setTypes(['geocode']);
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace();
         if (!place.geometry) {
             return;
@@ -95,14 +97,16 @@ function initializeAutocomplete() {
 }
 
 $("#searchButton").click(function codeAddress() {
+    countName=0;
+    $('#searchresults').html('');
     autoSearch = true;
     geocoder = new google.maps.Geocoder();
     var address = document.getElementById("locationTextField").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode({'address': address}, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
 
-            autoLat =results[0].geometry.location.lat();
-            autoLong =results[0].geometry.location.lng();
+            autoLat = results[0].geometry.location.lat();
+            autoLong = results[0].geometry.location.lng();
             console.log(autoLat);
             fun(setRequest());
         }
@@ -114,11 +118,10 @@ $("#searchButton").click(function codeAddress() {
 });
 
 
-
-
-
-$("#geoButton").click(function(){
-   fun(setRequest());
+$("#geoButton").click(function () {
+    countName=0;
+    $('#searchresults').html('');
+    fun(setRequest());
 });
 google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
 
@@ -131,15 +134,15 @@ google.maps.event.addDomListener(window, 'load', initializeAutocomplete);
 var container = document.getElementById('blubb');
 var service = new google.maps.places.PlacesService(container);
 
-function setRequest(){
-    if(autoSearch) {
+function setRequest() {
+    if (autoSearch) {
         tempRequest = {
             location: new google.maps.LatLng(autoLat, autoLong),
             radius: '500',
             types: ['bar', 'pub']
         };
         return tempRequest;
-    }else{
+    } else {
         var tempRequest = {
             location: new google.maps.LatLng(coords.lat, coords.lng),
             radius: '500',
@@ -157,7 +160,7 @@ function fun(tempRequest) {
     function callback(results, status) {
 
         if (status == google.maps.places.PlacesServiceStatus.OK) {
-            var localBarDatabase;
+
 
             $.ajax({
                 url: "/GET",
@@ -176,7 +179,7 @@ function fun(tempRequest) {
 
             //todo
             //change rating to priceBeer later when we have prices for it.
-            results.sort(function(a, b) {
+            results.sort(function (a, b) {
                 return parseFloat(b.rating) - parseFloat(a.rating);
             });
             for (var i = 0; i < results.length; i++) { //results.length
@@ -200,42 +203,44 @@ function fun(tempRequest) {
                     type: 'GET',
                     async: false,
                     success: function (response) {
-                       try {
-                           if (typeof response.result.opening_hours !== 'undefined' && typeof response.result.opening_hours.weekday_text !== 'undefined') {
-                               openingHours = response.result.opening_hours.weekday_text;
-                           } else {
-                               openingHours = ["Not specified",
-                                   "Not specified",
-                                   "Not specified",
-                                   "Not specified",
-                                   "Not specified",
-                                   "Not specified",
+                        try {
+                            if (typeof response.result.opening_hours !== 'undefined' && typeof response.result.opening_hours.weekday_text !== 'undefined') {
+                                openingHours = response.result.opening_hours.weekday_text;
+                            } else {
+                                openingHours = ["Not specified",
+                                    "Not specified",
+                                    "Not specified",
+                                    "Not specified",
+                                    "Not specified",
+                                    "Not specified",
 
-                                   "Not specified"]
-                           }
-                       }catch(err){}
-                       try {
-                           if (results[i].photos.length > 0) {
-                               var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 750, 'maxHeight': 750});
-                           }
-                       }catch(err){
-                           imageUrl = "beerPic.jpg"
-                       }
+                                    "Not specified"]
+                            }
+                        } catch (err) {
+                        }
+                        try {
+                            if (results[i].photos.length > 0) {
+                                var imageUrl = "" + results[i].photos[0].getUrl({'maxWidth': 750, 'maxHeight': 750});
+                            }
+                        } catch (err) {
+                            imageUrl = "beerPic.jpg"
+                        }
                         console.log(imageUrl);
 
                         $('#barResultContainer').append('<article class="barResult" id=barResult' + i + '></article>');
                         $('#barResult' + i).append('<section class="col-xs-12 col-sm-6 col-md-12" id=sectionResult' + i + '>');
                         $('#sectionResult' + i).append('<div class="row" id=rowId' + i + '></div>');
-                        $('#rowId' + i).append('<div class="col-md-7" id=pictCol' + i + '></div>');
+                        $('#rowId' + i).append('<div class="col-md-6" id=pictCol' + i + '></div>').hide().fadeIn(2500);
                         $('#pictCol' + i).append('<a class="alink" id=alink' + i + '></a>');
                         $('#alink' + i).append('<img src="" class="img-fluid mb-3 mb-md-0" id=searchImageUrl' + i + '></img>');
 
-                        $('#rowId' + i).append('<div class="col-md-5" id=textCol' + i + '></div>');
+                        $('#rowId' + i).append('<div class="col-md-6" id=textCol' + i + '></div>');
                         $('#textCol' + i).append('<h3 class="barResultTitle" id=barResultTitle' + i + '></h3>');
                         $('#textCol' + i).append('<p class="description" id=description' + i + '></p>');
                         $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
                         $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
-                        $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
+                        $('#marker' + i).append('<a class="address" id=address' + i + '></a>');
+                        $("#address" + i).attr("href", "https://www.google.se/maps/place/" + results[i].vicinity);
 
                         $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
                         $('#markerBeer' + i).append('<i class="glyphicon glyphicon-glass"></i>');
@@ -272,11 +277,13 @@ function fun(tempRequest) {
                         $('#viewInfo' + i).append('<p class="collapse" id=wiewInfoCider' + i + '></p>');
 
 
-
                         $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
                         $('#textCol' + i).append('<div class="rating" id=rating' + i + '></div>');
                         $('#textCol' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
                         $('#textCol' + i).append('<div class="address" id=address' + i + '></div>');
+
+
+
 
                         $('#barResultTitle' + i).append(results[i].name);
                         // $('#rating' + i).append(results[i].rating);
@@ -290,9 +297,10 @@ function fun(tempRequest) {
                         $('#openHours' + i).append(" " + openingHours[((d.getDay() + 6) % 7)]);
                         $('#wifiAvailable' + i).append(" Free wi-fi: Available");
                         $('#ratingStar' + i).append(" Rating: " + results[i].rating);
-                        $('#wiewInfoText' + i).append(" erkgnerklögneörklgnklerngjklerngjkerngjkerngjkern");
+                        $('#demo2' + i).append(" More info ");
                         $('#wiewInfoWine1' + i).append(" Wine from: 780");
                         $('#wiewInfoWine2' + i).append(" Cider from: lul");
+
 
                         for (var j = 0; j < localBarDatabase.length; j++) {
                             if (localBarDatabase[j].adress == results[i].vicinity && localBarDatabase[j].barName == results[i].name) {
@@ -305,12 +313,12 @@ function fun(tempRequest) {
                                 continue;
                             }
                         }
-                        if(match){
+                        if (match) {
                             $('#beerPrice' + i).append(" Beer from: " + beerPrice);
-                            $('#winePrice' + i).append(" Wine from: " +winePrice);
+                            $('#winePrice' + i).append(" Wine from: " + winePrice);
                             $('#ciderPrice' + i).append(" Cider from: " + ciderPrice);
                             match = false;
-                        }else{
+                        } else {
                             $('#beerPrice' + i).append(" Beer from: Not specified");
                             $('#winePrice' + i).append(" Wine from: Not specified");
                             $('#ciderPrice' + i).append(" Cider from: Not specified");
@@ -319,9 +327,13 @@ function fun(tempRequest) {
                     }
 
                 });
-               console.log(results);
+                console.log(results);
 
             }
+            for(var k=0; k<results.length; k++){
+                countName++;
+            }
+            $('#searchresults').append(countName);
         }
     }
 }

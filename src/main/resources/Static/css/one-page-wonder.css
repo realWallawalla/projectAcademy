@@ -1,3 +1,159 @@
+.price-box {
+    margin: 0 auto;
+    background: #E9E9E9;
+    border-radius: 10px;
+    padding: 5px 15px;
+    width: 50%;
+}
+
+.priceText {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-family: Verdana;
+    font-size: 20px;
+}
+
+.ui-widget-content {
+    border: 1px solid #bdc3c7;
+    background: #e1e1e1;
+    color: #222222;
+    margin-top: 4px;
+
+}
+
+.ui-slider .ui-slider-handle {
+    position: absolute !important;
+    z-index: 2 !important;
+    width: 3.2em !important;
+    height: 2.2em !important;
+    cursor: default !important;
+    margin: 0 -20px auto !important;
+    text-align: center !important;
+    line-height: 30px !important;
+    color: #FFFFFF !important;
+    font-size: 15px !important;
+}
+
+.ui-corner-all {
+    /*border-radius: 20px;*/
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -3em !important;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default {
+    background: #393a40 !important;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    margin-left: -0.5em !important;
+}
+
+.ui-slider .ui-slider-handle {
+    cursor: pointer;
+}
+
+.ui-slider a,
+.ui-slider a:focus {
+    cursor: grab;
+    outline: none;
+}
+
+.price, .lead p {
+    font-weight: 600;
+    font-size: 32px;
+    display: inline-block;
+    line-height: 60px;
+}
+
+p.great {
+    padding: 7px 15px;
+    margin-bottom: 30px;
+
+    color: #1c3136;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 5px;
+
+
+}
+
+.price-slider {
+    margin-bottom: 5px;
+}
+
+.form-pricing {
+    background: #ffffff;
+    padding left: 20px;
+    padding right: 20px;
+    border-radius: 4px;
+    height: 300;
+}
+
+.price-form {
+    background: #ffffff;
+    margin-bottom: 10px;
+    padding: 20px;
+    padding-bottom: 1px;
+
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group span.price {
+    font-weight: 200;
+    display: inline-block;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.help-text {
+    display: block;
+    margin-top: 32px;
+    margin-bottom: 10px;
+    color: #737373;
+    position: absolute;
+    font-weight: 200;
+    text-align: right;
+    width: 188px;
+}
+
+.price-form label {
+    font-weight: 200;
+    font-size: 21px;
+}
+
+.ui-slider-range-min {
+    background: #2980b9;
+}
+
+.ui-slider-label-inner {
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #393a40;
+    display: block;
+    left: 50%;
+    margin-left: -10px;
+    position: absolute;
+    top: 100%;
+    z-index: 99;
+}
+.barResultContainer2 {
+      margin: 0 auto;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      width: 100%;
+      text-align: left;
+      font-size: 16px;
+  }
 
 .barResultTitle {
     font-size: 14px;
@@ -6,6 +162,15 @@
 .jumbotron {
     padding-bottom: 0px;
     background-color: #e3e3e3;
+}
+
+.row {
+    margin: 0 auto;
+    max-width: 1000px;
+    background-color: white;
+    margin-bottom: 30px;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 #barResultContainer {
@@ -30,6 +195,7 @@ img.searchImageUrl {
     width: 300px;
     height: 300px;
     border-radius: 50%;
+
 }
 
 .rounded {
@@ -74,6 +240,7 @@ header.masthead {
 .barspecs {
     font-size: 16px;
 }
+
 
 
 .searchresults {
