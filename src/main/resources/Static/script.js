@@ -210,7 +210,6 @@ function fun(tempRequest) {
                                    "Not specified",
                                    "Not specified",
                                    "Not specified",
-
                                    "Not specified"]
                            }
                        }catch(err){}
@@ -235,7 +234,8 @@ function fun(tempRequest) {
                         $('#textCol' + i).append('<p class="description" id=description' + i + '></p>');
                         $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
                         $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
-                        $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
+                        $('#marker' + i).append('<a class="address" id=address' + i + '></a>');
+                        $("#address" + i).attr("href", "https://www.google.se/maps/place/" + results[i].vicinity);
 
                         $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
                         $('#markerBeer' + i).append('<i class="glyphicon glyphicon-glass"></i>');
