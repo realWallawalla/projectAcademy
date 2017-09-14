@@ -28,17 +28,16 @@
   <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
   <title>Beer Bro - Find cheap beer near you!</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw&libraries=places">
-  </script>
+  <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
 
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="css/one-page-wonder.css" rel="stylesheet">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDD5X7i5BOI8Uz0cn0uAhByxD_ix-O_jsw&libraries=places">
+  </script>
+
 
 </head>
 
@@ -65,6 +64,36 @@
   <div class="jumbotron">
     <h1>Welcome to Beer Bro!</h1>
     <p>Click the "Search from current location" button to list the bars closest to you, or make a custom search in the input field</p>
+
+
+    <div class="barResultContainer2">
+      <div class="price-box">
+        <form class="form-horizontal form-pricing" role="form">
+          <div class="price-slider">
+            <p class="great">Adjust your distance to specify your search radius</h4>
+
+            <div class="col-sm-12">
+              <div id="slider"></div>
+            </div>
+          </div>
+          <div class="price-form">
+            <div class="form-group">
+              <label for="amount" class="col-sm-6 control-label" class="great">Distance (meters): </label>
+              <!-- <span class="help-text">Choose your search radius</span> -->
+
+              <div class="col-sm-6">
+                <input type="hidden" id="amount" class="form-control">
+
+                <p class="price lead" id="amount-label"></p>
+                <span class="price"> m.</span>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
     <p id="geoButton"><a class="btn btn-primary btn-lg2" href="#" role="button"><i class="glyphicon glyphicon-map-marker"></i> Search from current location</a></p>
   </div>
 
@@ -72,7 +101,7 @@
   <div class="container">
     <div id="custom-search-input">
       <div class="input-group col-md-12">
-        <input type="text" class="form-control input-lg" id="locationTextField" placeholder="main.Search for an adress or zip code (e.g. Sveavägen 10 or 12345)" />
+        <input type="text" class="form-control input-lg" id="locationTextField" placeholder="Search for an adress or zip code (e.g. Sveavägen 10 or 12345)" />
         <span class="input-group-btn">
           <button class="btn btn-info btn-lg" type="button" id="searchButton">
             <i class="glyphicon glyphicon-search"></i>
@@ -86,7 +115,7 @@
   <!-- Sökresultat + infotext -->
   <div class="container">
     <hgroup class="mb20">
-      <h1 class="searchresulttext">Search Results</h1>
+      <h1 class="searchresulttext">Search Results: <span id = "searchresults"></span> </h1>
       </hgroup>
 
     <!-- Sökbild #1 -->
@@ -160,6 +189,7 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
 <script src="vendor/popper/popper.min.js"></script>
