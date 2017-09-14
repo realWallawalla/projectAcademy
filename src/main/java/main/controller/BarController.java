@@ -27,7 +27,7 @@ public class BarController {
                 return new Bar(
                         rs.getInt("Id"),
                         rs.getString("adress"),
-                        rs.getString("postnr"),
+                        rs.getString("barName"),
                         rs.getInt("priceBeer"),
                         rs.getInt("priceCider"),
                         rs.getInt("priceWine"));

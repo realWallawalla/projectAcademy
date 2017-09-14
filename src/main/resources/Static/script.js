@@ -2,6 +2,8 @@ var coords = {};
 var autoLat, autoLong;
 var tempRequest;
 var autoSearch = false;
+var match = false;
+var beerPrice, winePrice, ciderPrice;
 // $("#searchButton").click(function location(){
 //     var userSearch = $("#locationTextField").val().longitude;
 //     var userSearch2 = $("#locationTextField").val().altitude;
@@ -9,6 +11,43 @@ var autoSearch = false;
 //     console.log("alti: " +userSearch2);
 // });
 
+
+$(document).ready(function () {
+    $("#slider").slider({
+        range: "min",
+        animate: true,
+        value: 1,
+        min: 0,
+        max: 2500,
+        step: 50,
+        slide: function (event, ui) {
+            update(1, ui.value); //changed
+        }
+    });
+
+    //Added, set initial value.
+    $("#amount").val(0);
+    $("#amount-label").text(0);
+
+
+    update();
+});
+
+//changed. now with parameter
+function update(slider, val) {
+    //changed. Now, directly take value from ui.value. if not set (initial, will use current value.)
+    var $amount = slider == 1 ? val : $("#amount").val();
+
+    /* commented
+     $amount = $( "#slider" ).slider( "value" );
+     $duration = $( "#slider2" ).slider( "value" );
+     */
+
+    $("#amount").val($amount);
+    $("#amount-label").text($amount);
+
+    $('#slider a').html('<label>' + $amount + '</label><div class="ui-slider-label-inner"></div>');
+}
 function getLocation() {
     if (navigator.geolocation) {
 
@@ -135,6 +174,11 @@ function fun(tempRequest) {
 
             $("#barResultContainer").html('');
 
+            //todo
+            //change rating to priceBeer later when we have prices for it.
+            results.sort(function(a, b) {
+                return parseFloat(b.rating) - parseFloat(a.rating);
+            });
             for (var i = 0; i < results.length; i++) { //results.length
 
                 var d = new Date();
@@ -166,6 +210,7 @@ function fun(tempRequest) {
                                    "Not specified",
                                    "Not specified",
                                    "Not specified",
+
                                    "Not specified"]
                            }
                        }catch(err){}
@@ -193,8 +238,18 @@ function fun(tempRequest) {
                         $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
 
                         $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
-                        $('#markerBeer' + i).append('<i class="glyphicon glyphicon-usd"></i>');
+                        $('#markerBeer' + i).append('<i class="glyphicon glyphicon-glass"></i>');
                         $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
+
+
+                        $('#textCol' + i).append('<p class="markerWine" id=markerWine' + i + '></p>');
+                        $('#markerWine' + i).append('<i class="glyphicon glyphicon-glass"></i>');
+                        $('#markerWine' + i).append('<span class="winePrice" id=winePrice' + i + '></span>');
+
+
+                        $('#textCol' + i).append('<p class="markerCider" id=markerCider' + i + '></p>');
+                        $('#markerCider' + i).append('<i class="glyphicon glyphicon-glass"></i>');
+                        $('#markerCider' + i).append('<span class="ciderPrice" id=ciderPrice' + i + '></span>');
 
                         $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
                         $('#openMarker' + i).append('<i class="glyphicon glyphicon-time"></i>');
@@ -216,7 +271,6 @@ function fun(tempRequest) {
                         $('#viewInfoWine' + i).append('<span id=wiewInfoWine2' + i + '></span>');
                         $('#viewInfo' + i).append('<p class="collapse" id=wiewInfoCider' + i + '></p>');
 
-                        $('#textCol' + i).append('<button class="btn btn-primary" data-target="#demo" id=favBtn' + i + '>Add to favourites</button>');
 
 
                         $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
@@ -229,99 +283,44 @@ function fun(tempRequest) {
                         $("#searchImageUrl" + i).attr("src", imageUrl);
 
 
-                        $('#address' + i).append(results[i].vicinity);
+                        $('#address' + i).append(" " + results[i].vicinity);
 
                         // $('#description' + i).append("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.");
                         //$('#beerPrice' + i).append("Beer from: 35");
                         $('#openHours' + i).append(" " + openingHours[((d.getDay() + 6) % 7)]);
-                        $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
-                        $('#ratingStar' + i).append("Rating: " + results[i].rating);
+                        $('#wifiAvailable' + i).append(" Free wi-fi: Available");
+                        $('#ratingStar' + i).append(" Rating: " + results[i].rating);
                         $('#wiewInfoText' + i).append(" erkgnerklögneörklgnklerngjklerngjkerngjkerngjkern");
-                        $('#wiewInfoWine1' + i).append(" Wine: 780");
-                        $('#wiewInfoWine2' + i).append(" Cider: lul");
+                        $('#wiewInfoWine1' + i).append(" Wine from: 780");
+                        $('#wiewInfoWine2' + i).append(" Cider from: lul");
 
                         for (var j = 0; j < localBarDatabase.length; j++) {
-                            if (localBarDatabase[j].adress == results[i].vicinity) {
-                                $('#beerPrice' + i).append(localBarDatabase[j].priceBeer);
+                            if (localBarDatabase[j].adress == results[i].vicinity && localBarDatabase[j].barName == results[i].name) {
+                                console.log("local: " + localBarDatabase[j].barName);
+                                console.log("google: " + results[i].name);
+                                beerPrice = localBarDatabase[j].priceBeer;
+                                winePrice = localBarDatabase[j].priceWine;
+                                ciderPrice = localBarDatabase[j].priceCider;
+                                match = true;
+                                continue;
                             }
                         }
-
+                        if(match){
+                            $('#beerPrice' + i).append(" Beer from: " + beerPrice);
+                            $('#winePrice' + i).append(" Wine from: " +winePrice);
+                            $('#ciderPrice' + i).append(" Cider from: " + ciderPrice);
+                            match = false;
+                        }else{
+                            $('#beerPrice' + i).append(" Beer from: Not specified");
+                            $('#winePrice' + i).append(" Wine from: Not specified");
+                            $('#ciderPrice' + i).append(" Cider from: Not specified");
+                        }
                         autoSearch = false;
                     }
 
                 });
-                console.log(results);
+               console.log(results);
 
-                //     $('#barResultContainer').append('<article class="barResult" id=barResult' + i + '></article>');
-                //     $('#barResult' + i).append('<section class="col-xs-12 col-sm-6 col-md-12" id=sectionResult' + i + '>');
-                //     $('#sectionResult' + i).append('<div class="row" id=rowId' + i + '></div>');
-                //     $('#rowId' + i).append('<div class="col-md-7" id=pictCol' + i + '></div>');
-                //     $('#pictCol' + i).append('<a class="alink" id=alink' + i + '></a>');
-                //     $('#alink' + i).append('<img src="" class="img-fluid mb-3 mb-md-0" id=searchImageUrl' + i + '></img>');
-                //
-                //     $('#rowId' + i).append('<div class="col-md-5" id=textCol' + i + '></div>');
-                //     $('#textCol' + i).append('<h3 class="barResultTitle" id=barResultTitle' + i + '></h3>');
-                //     $('#textCol' + i).append('<p class="description" id=description' + i + '></p>');
-                //     $('#textCol' + i).append('<p class="marker" id=marker' + i + '></p>');
-                //     $('#marker' + i).append('<i class="glyphicon glyphicon-map-marker"></i>');
-                //     $('#marker' + i).append('<span class="address" id=address' + i + '></span>');
-                //
-                //     $('#textCol' + i).append('<p class="markerBeer" id=markerBeer' + i + '></p>');
-                //     $('#markerBeer' + i).append('<i class="glyphicon glyphicon-usd"></i>');
-                //     $('#markerBeer' + i).append('<span class="beerPrice" id=beerPrice' + i + '></span>');
-                //
-                //     $('#textCol' + i).append('<p class="openMarker" id=openMarker' + i + '></p>');
-                //     $('#openMarker' + i).append('<i class="glyphicon glyphicon-time"></i>');
-                //     $('#openMarker' + i).append('<span class="openHours" id=openHours' + i + '></span>');
-                //
-                //     $('#textCol' + i).append('<p class="wifi" id=wifi' + i + '></p>');
-                //     $('#wifi' + i).append('<i class="glyphicon glyphicon-signal"></i>');
-                //     $('#wifi' + i).append('<span class="wifiAvailable" id=wifiAvailable' + i + '></span>');
-                //
-                //     $('#textCol' + i).append('<p class="rating" id=rating' + i + '></p>');
-                //     $('#rating' + i).append('<i class="glyphicon glyphicon-star"></i>');
-                //     $('#rating' + i).append('<span class="ratingStar" id=ratingStar' + i + '></span>');
-                //
-                //     $('#textCol' + i).append('<button class="btn btn-primary" data-toggle="collapse" data-target=#demo2' + i + ' id=wiewInfoBtn' + i + '>View more info</button>');
-                //     $('#textCol' + i).append('<div class="collapse" id=demo2' + i + '></div>');
-                //     $('#demo2' + i).append('<p id=wiewInfoText' + i + '></p>');
-                //     $('#demo2' + i).append('<p id=wiewInfoWine' + i + '></p>');
-                //     $('#viewInfoWine' + i).append('<i class="glyphicon glyphicon-usd" id=wiewInfoWine1' + i + '></i>');
-                //     $('#viewInfoWine' + i).append('<span id=wiewInfoWine2' + i + '></span>');
-                //     $('#viewInfo' + i).append('<p class="collapse" id=wiewInfoCider' + i + '></p>');
-                //
-                //     $('#textCol' + i).append('<button class="btn btn-primary" data-target="#demo" id=favBtn' + i + '>Add to favourites</button>');
-                //
-                //
-                //     $('#textCol' + i).append('<p class="barResultTitle" id=barResultTitle' + i + '></p>');
-                //     $('#textCol' + i).append('<div class="rating" id=rating' + i + '></div>');
-                //     $('#textCol' + i).append('<div class="searchImage" id=searchImage' + i + '></div>');
-                //     $('#textCol' + i).append('<div class="address" id=address' + i + '></div>');
-                //
-                //     $('#barResultTitle' + i).append(results[i].name);
-                //     // $('#rating' + i).append(results[i].rating);
-                //     $("#searchImageUrl" + i).attr("src", imageUrl);
-                //
-                //
-                //     $('#address' + i).append(results[i].vicinity);
-                //
-                //     // $('#description' + i).append("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate.");
-                //     //$('#beerPrice' + i).append("Beer from: 35");
-                //     $('#openHours' + i).append(" " + openingHours[((d.getDay() + 6)%7)]);
-                //     $('#wifiAvailable' + i).append(" Free wi-fi: Avalaible");
-                //     $('#ratingStar' + i).append("Rating: " + results[i].rating);
-                //     $('#wiewInfoText' + i).append(" erkgnerklögneörklgnklerngjklerngjkerngjkerngjkern");
-                //     $('#wiewInfoWine1' + i).append(" Wine: 780");
-                //     $('#wiewInfoWine2' + i).append(" Cider: lul");
-                //
-                //     for(var j = 0; j <localBarDatabase.length; j++) {
-                //         if (localBarDatabase[j].adress == results[i].vicinity) {
-                //             $('#beerPrice' + i).append(localBarDatabase[j].priceBeer);
-                //         }
-                //     }
-                //
-                //     autoSearch = false;
-                // }
             }
         }
     }

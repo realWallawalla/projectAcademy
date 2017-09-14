@@ -8,15 +8,15 @@ import java.io.Serializable;
 public class Bar {
     public int id;
     public String adress;
-    public String postnr;
+    public String barName;
     public int priceBeer;
     public int priceCider;
     public int priceWine;
 
-    public Bar(int id, String adress, String postnr, int priceBeer, int priceCider, int priceWine) {
+    public Bar(int id, String adress, String barName, int priceBeer, int priceCider, int priceWine) {
         this.id = id;
         this.adress = adress;
-        this.postnr = postnr;
+        this.barName = barName;
         this.priceBeer = priceBeer;
         this.priceCider = priceCider;
         this.priceWine = priceWine;
