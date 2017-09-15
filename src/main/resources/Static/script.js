@@ -18,7 +18,7 @@ $(document).ready(function () {
     $("#slider").slider({
         range: "min",
         animate: true,
-        value: 1,
+        value: 500,
         min: 0,
         max: 2500,
         step: 50,
@@ -28,8 +28,8 @@ $(document).ready(function () {
     });
 
     //Added, set initial value.
-    $("#amount").val(0);
-    $("#amount-label").text(0);
+    $("#amount").val(500);
+    $("#amount-label").text(500);
 
 
     update();
@@ -135,21 +135,25 @@ var container = document.getElementById('blubb');
 var service = new google.maps.places.PlacesService(container);
 
 function setRequest() {
+    var sliderRadius = $('#amount').val();
+    console.log("sliderRadius");
+    console.log(sliderRadius);
     if (autoSearch) {
         tempRequest = {
             location: new google.maps.LatLng(autoLat, autoLong),
-            radius: '500',
+            radius: sliderRadius,
             types: ['bar', 'pub']
         };
         return tempRequest;
     } else {
         var tempRequest = {
             location: new google.maps.LatLng(coords.lat, coords.lng),
-            radius: '500',
+            radius: sliderRadius,
             types: ['bar', 'pub']
         };
         return tempRequest;
     }
+
 }
 
 function fun(tempRequest) {
